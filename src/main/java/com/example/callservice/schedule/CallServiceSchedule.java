@@ -25,7 +25,7 @@ public class CallServiceSchedule {
 
         try {
             // call api
-            ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/call", HttpMethod.GET, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange("https://mongodb-demo-1.onrender.com/call", HttpMethod.GET, entity, String.class);
             String res = response.getBody();
             log.info(" Call successfully : {}", res);
         } catch (Exception ex) {
