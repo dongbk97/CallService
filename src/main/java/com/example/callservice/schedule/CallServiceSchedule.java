@@ -32,7 +32,19 @@ public class CallServiceSchedule {
             ex.printStackTrace();
         }
     }
+    @Scheduled(fixedRate = 600000) // 600000 milliseconds = 10 minutes
+    public void callAuthService() {
+        HttpEntity<String> entity = createHttpEntity();
 
+        try {
+            // call api
+            ResponseEntity<String> response = restTemplate.exchange("https://auth-service-ghga.onrender.com/auth/call", HttpMethod.GET, entity, String.class);
+            String res = response.getBody();
+            log.info(" Call successfully : {}", res);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     private HttpEntity<String> createHttpEntity() {
         // create headers include token
         HttpHeaders headers = new HttpHeaders();
